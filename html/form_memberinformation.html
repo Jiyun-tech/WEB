@@ -5,32 +5,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Member Information</title>
+    <title>실습 7 - Member Information</title>
 </head>
 
 <body>
     <h2>1 정보입력</h2>
     <form action="">
         <label for="name"></label>
-        <input type="text" value="이름" style="width: 350px; height: 30px;">
+        <input type="text" placeholder="이름" style="width: 400px; height: 30px;" autofocus>
         <br>
         <br>
         <label for="id"></label>
-        <input type="text" value="아이디" style="width: 350px; height: 30px;">
+        <input type="text" placeholder="아이디" style="width: 400px; height: 30px;">
         <br>
         <br>
         <label for="password"></label>
-        <input type="text" value="비밀번호" style="width: 350px; height: 30px;">
+        <input type="password" placeholder="비밀번호" style="width: 400px; height: 30px;">
         <a href="C:\WEB\landscape.jpg">비밀번호 도움말</a>
         <br>
         <br>
         <label for="password"></label>
-        <input type="text" value="비밀번호 재입력" style="width: 350px; height: 30px;">
+        <input type="password" placeholder="비밀번호 재입력" style="width: 400px; height: 30px;">
         <br>
         <br>
         <label for="phonenumber"></label>
-        <select id="phonenumber" name="phonenumber" siz="1" style="width: 100px; height: 30px;">
-            <option value="">휴대폰 번호 선택</option>
+        <select id="phonenumber" name="phonenumber" siz="1" style="width: 155px; height: 35px;">
+            <option value="" selected disabled hidden>휴대폰 번호 선택</option>
             <option value="010">010</option>
             <option value="011">011</option>
             <option value="016">016</option>
@@ -39,18 +39,18 @@
         </select>
         -
         <label for="phonenumber" id="phonenumber"></label>
-        <input type="number" value="" style="width: 100px; height: 30px;"">
+        <input type="tel" value="" style="width: 100px; height: 30px;"">
         -
         <label for=" phonenumber" id="phonenumber"></label>
-        <input type="number" value="" style="width: 100px; height: 30px;"">
+        <input type="tel" value="" style="width: 100px; height: 30px;"">
         <br>
         <br>
         <label for=" email" id="email"></label>
-        <input type="text" value="이메일" style="width: 100px; height: 30px;"">
+        <input type="email" placeholder="이메일" style="width: 145px; height: 30px;"">
         @
         <label for=" email"></label>
-        <select id="email" name="emaildomain" siz="1" style="width: 100px; height: 30px;"">
-          <option value="">선택</option>
+        <select id="email" name="emaildomain" siz="1" style="width: 100px; height: 35px;"">
+          <option value="" selected disabled hidden>선택</option>
           <option value=" gmail.com">gmail.com</option>
             <option value="naver.com">naver.com</option>
             <option value="hanmail.net">hanmail.net</option>
@@ -61,8 +61,8 @@
         <br>
         <br>
         <label for="phonenumber"></label>
-        <select id="phonenumber" name="phonenumber" siz="1" style="width: 200px; height: 30px;">
-            <option value="">전화번호</option>
+        <select id="phonenumber" name="phonenumber" siz="1" style="background-color: gainsboro; width: 200px; height: 35px;">
+            <option value="" selected disabled hidden>전화번호</option>
             <option value="02">02</option>
             <option value="051">051</option>
             <option value="053">053</option>
@@ -85,15 +85,15 @@
         </select>
         -
         <label for="phonenumber" id="phonenumber"></label>
-        <input type="number" value="" style="width: 200px; height: 30px;">
+        <input type="tel" value="" style="background-color: gainsboro; width: 200px; height: 30px;">
         -
         <label for="phonenumber" id="phonenumber"></label>
-        <input type="number" value="" style="width: 200px; height: 30px;">
+        <input type="tel" value="" style="background-color: gainsboro; width: 200px; height: 30px;">
         <br>
         <br>
         <label for="phonenumber"></label>
-        <select id="phonenumber" name="phonenumber" siz="1" style="width: 150px; height: 30px;">
-            <option value="">휴대폰 번호</option>
+        <select id="phonenumber" name="phonenumber" siz="1" style="background-color: gainsboro; width: 150px; height: 35px;">
+            <option value="" selected disabled hidden>휴대폰 번호</option>
             <option value="010">010</option>
             <option value="011">011</option>
             <option value="016">016</option>
@@ -102,29 +102,29 @@
         </select>
         -
         <label for="phonenumber" id="phonenumber"></label>
-        <input type="number" value="" style="width: 150px; height: 30px;">
+        <input type="tel" value="" style="background-color: gainsboro; width: 150px; height: 30px;">
         -
         <label for="phonenumber" id="phonenumber"></label>
-        <input type="number" value="" style="width: 150px; height: 30px;">
-        <input type="submit" value="휴대폰 인증" style="background-color: gray; width: 145px; height: 30px;">
+        <input type="tel" value="" style="background-color: gainsboro; width: 150px; height: 30px;">
+        <input type="submit" value="휴대폰 인증" style="width: 145px; height: 35px;">
         <br>
         <input type="radio" id="currentnumber" name="phoneconfirm" value="currentnumber">
         <label for="currentnumber">인증받은 휴대폰 번호를 대표번호로 사용</label>
         <input type="radio" id="newnumber" name="phoneconfirm" value="newnumber">
         <label for="newnumber">다른번호 등록</label>
         <input type="radio" id="nexttime" name="phoneconfirm" value="nexttime">
-        <label for="nextime">다음에 등록함</label>
+        <label for="nexttime">다음에 등록함</label>
         <br>
         <br>
         <label for="zipcode"></label>
-        <input type="text" value="우편번호" style="width: 500px; height: 30px;">
-        <input type="submit" value="주소 찾기" style="background-color: gray; width: 135px; height: 30px;">
+        <input type="number" placeholder="우편번호" style="background-color: gainsboro; width: 450px; height: 30px;">
+        <input type="submit" value="주소 찾기" style="width: 135px; height: 35px;">
         <br>
         <br>
         <br>
         <br>
-        <input type="submit" value="가입신청" style="background-color: red; width: 150px; height: 30px;">
-        <input type="reset" value="취소" style="background-color: gray; width: 150px; height: 30px;">
+        <input type="submit" value="가입신청" style="font-size: 20px; color: white; background-color: red; width: 200px; height: 50px;">
+        <input type="reset" value="취소" style="font-size: 20px; width: 200px; height: 50px;">
 
     </form>
 
