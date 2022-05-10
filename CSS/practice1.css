@@ -1,0 +1,39 @@
+/* style sheet for practice1.html */
+div { /* div 구역 공통 지정 */
+    color: blue;
+    width: 250px;
+    text-decoration-color: green;
+    text-decoration-thickness: 5px;
+    text-decoration-line: underline;
+}
+
+.color1 { /* text color for class color1 */
+    color: red;
+}
+
+/* 정렬 */
+.text-align1 {
+    text-align: justify;
+    text-decoration: underline;
+}
+.text-align2 {
+    text-align: right;
+    text-decoration: line-through;
+}
+.text-align3 {
+    text-align: center;
+    text-decoration: overline underline;
+    text-decoration-style: dotted;
+}
+
+/* text 꾸미기 */
+.text-decoration1 {
+    text-decoration-style: double;
+    text-decoration: overline;
+    text-decoration-style: wavy;
+}
+
+/* 들여쓰기 */
+.text-indent1 {
+    text-indent:50px;
+}

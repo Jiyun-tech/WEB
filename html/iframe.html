@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audio Tag practice</title>
+    <title>iframe tag practice</title>
 </head>
 <body>
     <!-- audio : 음성 삽입 기능 (width, height 등 지정 가능) -->
@@ -13,14 +13,18 @@
     Your browser does not support the video tag.
     </audio>
 
-    <!-- div : code 나눌 때 사용 (줄도 띄워짐) -->
     <div>
-        <!-- iframe: 페이지에 다른 페이지를 삽입할 수 있는 기능 -->
-        <iframe src="https://www.kopo.ac.kr/" frameborder="0" width="600" height="400"></iframe>
+        <!-- iframe: 페이지에 다른 페이지(외부 html 페이지)를 삽입할 수 있는 기능 -->
+        <!-- 학교 홈페이지 삽입 -->
+        <iframe src="https://www.kopo.ac.kr/" frameborder="0" width="600" height="400">
+        </iframe>
     </div>
 
     <div>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/aIekKOWiBMk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <!-- iframe: 페이지에 다른 페이지(외부 html 페이지)를 삽입할 수 있는 기능 -->
+        <!-- Youtube 동영상 가져오기 (공유 ==> 퍼가기 ==> iframe 코드 복사) -->
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/aIekKOWiBMk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
     </div>
 </body>
 </html>

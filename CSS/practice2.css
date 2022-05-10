@@ -1,0 +1,22 @@
+/* style sheet for practice2.html */
+div { /* div 구역 공통 지정 */
+    font-size: 50px;
+    font-weight: bolder;
+}
+
+.fontfamily1 { 
+    font-family: 'Times New Roman', Times, serif;
+    font-style: normal;
+    font-weight: 1000;
+}
+.fontfamily2 { 
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+    font-size: xx-large;
+    font-weight: lighter;
+}
+.fontfamily3 { 
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: oblique;
+    font-size: small;
+}
