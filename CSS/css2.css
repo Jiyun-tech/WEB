@@ -17,11 +17,9 @@ p {
 .red-text {
     color: red;
 }
-
 .yellow-text {
     color: yellow
 }
-
 .big-size {
     font-size: xx-large;
 }
@@ -43,4 +41,9 @@ p.border-set {
 /* ID selector (# 뒤에 이름 써주기) ==> 사용 빈도 낮음 */
 #div1 {
     background-color: blanchedalmond;
+}
+
+/* name selector */
+[name="name1"] {
+    font-size: 200px;
 }
