@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css display practice</title>
+</head>
+<body>
+    <style>
+        div {
+            display: inline;
+            height: 200px;
+            border: 1px red solid;
+            padding-left: 10px;
+            padding-top: 10px;
+            margin: 10px;
+        }
+
+        .div2 {
+            display: none;
+        }
+        .div3 {
+            display: visibility;
+
+        }
+        .div4 {
+            display: block;
+
+        }
+        .div5 {
+            display: inline-block;
+
+        }
+
+        span {
+            font-size: 100;
+        }
+
+    </style>
+
+    <div>div1 inline</div>
+    <div class="div2">div2 none</div>
+    <div class="div3">div3 visibility</div>
+    <div class="div4">div4 block</div>
+    <div class="div5">div5 inline-block is like this</div>
+
+    <br>
+    <span>span1</span>
+    <span>span2</span>
+
+    <!-- 요즘 방식 & 옛날 방식 -->
+    <head>header</head>
+    <div id="header">header2</div>
+    <footer>footer</footer>
+    <div id="footer">footer2</div>
+
+</body>
+</html>

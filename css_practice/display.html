@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css display practice</title>
+</head>
+<body>
+    <style>
+        div {
+            border: 1px red solid;
+            height: 100px;
+            padding-left: 20px;
+            padding-top: 10px;
+            margin: 10px;
+        }
+        .div1 { /* none : 해당 구역이 보이지 않게 함 */
+            display: none;
+        }
+        .div2 { /* visibility : 해당 구역이 보이게 함. 기본값으로, 생략 가능! */
+            display: visibility;
+        }
+        .div3 { /* none : 해당 구역을 block으로 취급함 (마진, 패딩 상하좌우 가능) */
+            display: block;
+        }
+        .div4 { /* none : 해당 구역을 글자로 취급함(마진, 패딩 좌우 가능, 상하 불가) */
+            display: inline;
+        }
+        .div5 { /* none : block(블록) & inline(글자) 특징을 모두 가짐 */
+            display: inline-block;  /* (마진, 패딩 상하좌우 가능)  */
+        }
+    </style>
+
+    <div>div all</div>
+    <div class="div1">di1 none</div>
+    <div class="div2">div2 visibility</div>
+    <div class="div3">div3 block</div>
+    <div class="div4">div4 inline inline</div>
+    <div class="div5">div5 inline-block inline-block</div>
+
+</body>
+</html>
