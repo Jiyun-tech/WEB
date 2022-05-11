@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>border</title>
+</head>
+<body>
+    <style>
+        div {
+            border-color: blue;
+            border-width: 10px;
+            margin: 5px;
+        }
+        .all { /* 굵기, 컬러, 선 종류 한 번에 지정 */
+            border: 1px #000000 solid; 
+        }
+        .style { /* 외곽선 4면 스타일 */
+            border-style: double;
+        }
+        .top { /* 외곽선 위 스타일 */
+            border-top-style: dotted;
+        }
+        .right { /* 외곽선 오른쪽 스타일 */
+            border-right-style: dashed;
+        }
+        .bottom { /* 외곽선 아래 스타일 */
+            border-bottom-style: ridge;
+        }
+        .left { /* 외곽선 왼쪽 스타일 */
+            border-left-style: dotted;
+        }
+        .radius { /* 외곽선 둥글게 */
+            border-radius: 20%;
+            border-style: solid;
+        }
+
+    </style>
+    <div class="all">border all</div>
+    <div class="style">border style</div>
+    <div class="top">border top style</div>
+    <div class="right">border right style</div>
+    <div class="bottom">border bottom style</div>
+    <div class="left">border left style</div>
+    <div class="radius">border radius</div>
+</body>
+</html>
