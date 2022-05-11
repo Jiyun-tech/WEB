@@ -8,15 +8,26 @@
 </head>
 <body>
     <style>
-        .container { 
-            @media screen {
-                
-            }
-         }
-        div.sentence { position: fixed; z-index: 1; text-align: center; top:350px; left:500px; color:whitesmoke;}
-        .redcolor { font-size: 20px; color: red;}
+ 
+        @media (max-width: 600px) {
+            body {
+                background-color: navy;}
+        }
+
+        @media (min-width: 600px) {
+            body {
+                background-color: black;}
+        }
+   
+
+        div.sentence { position: fixed; z-index: 1; text-align: center; top:350px; left:500px; color:whitesmoke;
+        }
+        .redcolor { font-size: 20px; color: red;
+        }
+            
         div.button { position: fixed; z-index: 1; text-align: center; top:400px; left: 580px; color: navy; 
-                    border-style: none; border-width: 1px; background-color: whitesmoke;}
+                    border-style: none; border-width: 1px; background-color: whitesmoke;
+        }
     </style>
     <div class="container"> 
         <img src="https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
