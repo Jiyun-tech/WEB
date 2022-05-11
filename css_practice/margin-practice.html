@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>margin tag</title>
+</head>
+<body>
+    <style>
+    div {
+        display: block; 
+        border: 1px red solid;
+        height: 50px; }
+    .m1 { margin: 30px;}
+    .m2 { margin-top: 30px;}
+    .m3 { margin-left: 30px;}
+    .m4 { margin-right: 30px;}
+    .m5 { margin-bottom: 30px;}
+    .m6 { margin: 30px 50px 30px 50px;} /* 순서 : top right bottom left */
+    .m7 { margin: 30px 50px 30px;}      /* 순서 : top (right&left) bottom */
+    .m8 { margin: 30px 50px;}           /* 순서 : (top&bottom) (left&right) */
+    </style>
+    <div class="m1">margin</div>
+    <div class="m2">margin-top</div>
+    <div class="m3">margin-left</div>
+    <div class="m4">margin-right</div>
+    <div class="m5">margin-bottom</div>
+    <div class="m6">margin top right bottom left</div>
+    <div class="m7">margin top (right&left) bottom</div>
+    <div class="m8">margin (top&bottom) (left&right)</div>
+</body>
+</html>
