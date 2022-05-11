@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>position</title>
+</head>
+<body>
+    <style>
+        div {  border: 3px solid #73AD21; margin: 20px 5px;}
+        div.top { position: fixed; top: 100px;}
+        div.bottom { position: fixed; bottom: 100px;}
+        div.right { position: fixed; right: 400px;}
+        div.left { position: fixed; left : 200px;}
+        div.overflow {
+            overflow: hidden;
+            width:200px; 
+            height:30px;
+        }
+        div.overflow-x {
+            width:200px; 
+            height:30px;
+            overflow-x: visible;
+            margin: 5px 5px 100px;
+        }           
+        div.overflow-y {
+            width:200px; 
+            height:30px;
+            overflow-y: auto;
+        }           
+        div.absolute { /* 가장 가까운 이전 위치에 따른 상대적 위치 */
+            position: absolute;
+            top: 80px;
+            right: 0;
+            width: 400px;
+            height: 100px;          
+            border-color: blue;  
+        }
+        div.fixed { /* view point에 따른 위치 고정 (볼 때 늘 같은 위치) */
+            position: fixed;
+            top: 400px;
+            right: 100px;
+            width: 300px;
+            border-color: blue;
+        }
+        div.relative { /* 기본 위치에 따라 상대적 위치 지정 */
+            position: relative;
+            left: 30px;
+            border-color: blue;
+        }
+        div.static { /* 위치 지정 불가 */
+            position: static;
+            border-color: blue;
+        }
+        div.z-index { /* z-index: image or text의 순서 설정 (layer) */
+                      /* -1: 가장 뒤, 0: 원래 순서, 1: 가장 앞 */
+            position: absolute;
+            top: 200px;
+            border:0ch;
+            z-index: -1;
+            border-color: blue;
+        }
+        div.sticky { /* fixed&relative 속성 비슷. 언제나 프레임 안에 위치 */
+            position: sticky;
+            bottom: 10px;
+            padding: 20px;
+            width:200px;
+        }
+
+    </style>
+
+    <div class="top">top</div>
+    <div class="bottom">bottom</div>
+    <div class="left">left</div>
+    <div class="right">right</div>
+    <div class="overflow">overflow : hidden overflow : hidden overflow : hidden overflow : hidden overflow : hidden overflow : hidden overflow : hidden overflow : hidden overflow : hidden overflow : hidden overflow : hidden</div>
+    <div class="overflow-x">overflow-x: visible overflow-x: visible overflow-x: visible overflow-x: visible overflow-x: visible</div>
+    <div class="overflow-y">overflow-y: auto overflow-y: auto overflow-y: auto overflow-y: auto overflow-y: auto</div>
+    <div class="absolute">position: absolute</div>
+    <div class="fixed">position: fixed</div>
+    <div class="relative">position: relative</div>
+    <div class="static">position: static</div>
+    <div class="z-index"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/800px-Tux.svg.png" alt=""></div>
+    <div class="sticky">sticky sticky</div>
+</body>
+</html>
