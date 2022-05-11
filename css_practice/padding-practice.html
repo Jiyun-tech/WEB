@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>padding tag</title>
+</head>
+<body>
+    <style>
+    div {
+        display: block; 
+        border: 1px red solid;
+        height: 100px; 
+        margin: 5px}
+    .m1 { padding: 20px;}
+    .m2 { padding-top: 20px;}
+    .m3 { padding-left: 20px;}
+    .m4 { padding-right: 20px;}
+    .m5 { padding-bottom: 20px;}
+    .m6 { padding: 20px 20px 20px 20px;} /* 순서 : top right bottom left */
+    .m7 { padding: 20px 20px 20px;}      /* 순서 : top (right&left) bottom */
+    .m8 { padding: 20px 20px;}           /* 순서 : (top&bottom) (left&right) */
+    </style>
+    <div class="m1">padding</div>
+    <div class="m2">padding-top</div>
+    <div class="m3">padding-left</div>
+    <div class="m4">padding-right padding-right padding-right padding-right padding-right padding-right padding-right padding-right padding-right padding-right padding-right</div>
+    <div class="m5">padding-bottom </div>
+    <div class="m6">padding top right bottom left</div>
+    <div class="m7">padding top (right&left) bottom</div>
+    <div class="m8">padding (top&bottom) (left&right)</div>
+</body>
+</html>
