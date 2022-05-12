@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 1</title>
+</head>
+<body>
+    <script>
+        // 1. 이름 입력
+        let name = prompt('이름을 입력하세요');
+
+        // 2. if 이름 입력 안 되었다면, ('', null) 
+        // ==> prompt로 입력 다시 받기
+        if (name == '' || name == null) {
+            name = prompt('이름을 입력하세요');
+        }
+
+        // 3. if 이름 입력 되면, ==> '@@님 안녕하세요' alert
+        if (name != '' && name!= null ) {
+            console.log(name);
+            alert(`${name}님 안녕하세요`);
+        }
+
+    </script>
+
+</body>
+</html>
