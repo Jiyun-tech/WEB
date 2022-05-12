@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        #printit {
+            display: fixed;
+            font-size: 200px;
+        }
+        div.colorbox {
+            display: fixed;
+        }
+    </style>
+
+    <div id="printit" align="center"> </div>
+
+    <script>
+        let text = prompt('텍스트를 입력하세요');
+
+        if (text == '' || text == null || text == " ") {
+            alert('텍스트 값을 입력하세요');
+        } if (text != '' && text != null && text != " ") {
+            document.getElementById('printit').innerText = text;
+        } 
+
+        function turnRed() {
+            alert("빨간색으로 변경됩니다");
+            document.getElementById('printit').style.color = "#FF0000";
+        }
+        function turnBlue() {
+            alert("파란색으로 변경됩니다");
+            document.getElementById('printit').style.color = "#0000FF";
+        }
+        function turnGreen() {
+            alert("초록색으로 변경됩니다");
+            document.getElementById('printit').style.color = "#00FF00";
+        }
+    </script>
+
+    <div class="colorbox" align="center"> 
+        <button type="button" onClick="turnRed();" >빨강</button>
+        <button type="button" onClick="turnBlue();" >파랑</button>
+        <button type="button" onClick="turnGreen();" >초록</button>
+    </div>
+
+</body>
+</html>
