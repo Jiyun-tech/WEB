@@ -1,3 +1,4 @@
 # 🖌 Web Programming Class (front-end)
 > html <br>
-> css
+> css <br>
+> JavaScript <br>
