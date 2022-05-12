@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        // 1. 숫자 입력 받고, 입력받은 String을 num으로 변경하기
+        let number = Number(prompt('숫자를 입력해 주세요'));
+
+        // 2. if 입력한 내용이 숫자가 아니면, '숫자를 입력하세요' alert
+        if (isNaN(number)) {
+            alert('숫자를 입력하세요');
+        }
+
+        // 3. if 입력 숫자가 1 이상 100 이하가 아니면,
+        // '1이상 100 이하 숫자를 넣어주세요' alert
+        if (number < 1 || number > 100) {
+            alert('1 이상 100 이하 숫자를 넣어주세요');
+        }
+
+        // 4. if 입력 숫자가 1 이상 100 이하이면,
+        // 1~100 차례대로 log 찍은 후, '완료되었습니다' alert.
+        if (number >= 1 && number <= 100) {
+            for (let i = 1; i<101; i++) {
+                console.log(i);
+            }
+            alert("완료되었습니다.");
+        }
+    </script>
+    
+</body>
+</html>
