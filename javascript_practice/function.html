@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onclick alert</title>
+    <script src="my_script_for_function.js"></script>
+</head>
+<body>
+
+    <!-- 1. 인라인 추가 방식 -->
+    <!-- case(1) -->
+    <input type="button" value="버튼" onclick="javascript:alert('경고');">
+    <!-- case(2) -->
+    <button onclick="alert('경고')">버튼</button>
+
+    <!-- 2. 내부 선언 방식 -->
+    <script>
+        alert('경고 from script');
+    </script>
+
+    <!-- 3. 함수 생성 방식 ==> 함수 생성 -->
+    <script>
+        // 함수 선언
+        function myAlert() {
+            alert('경고 from function');
+        }
+
+        function myConsoleAlert() {
+            // 콘솔 창에 나오게끔 하는 것. (alert = 창이 뜨는 것)
+            console.log('경고'); 
+        }
+    </script>
+    <!-- 3. 함수 생성 방식 ==> 함수 호출 -->
+    <button onclick="myAlert();">버튼-창</button> 
+    <button onclick="myConsoleAlert();">버튼-콘솔</button> 
+
+    <!-- 4. 외부 생성 방식 (import) -->
+    <button ondblclick="showMyName();">더블 클릭</button>
+
+
+
+
+
+</body>
+</html>
