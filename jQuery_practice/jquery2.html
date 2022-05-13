@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <script>
+        // onload
+        $(function() {
+            $('#check_all_button').click(function() {
+                $(':checkbox[name=mycheck]').each(function() {
+                    this.checked = true;
+                });
+            });
+            $('#check_number_button').click(function() {
+                if ($(':checkbox[name=mycheck]').is(':checked') == true) {
+                    $('#check_result').text('OK');
+                } else {
+                    $('#check_result').text('NO');
+                }
+            })
+
+            //animation
+            $('#box').click(function() {
+                // JavaScript 내장 함수 (jQuery와 무관)
+                // 1초 후에 애니메이션 시작
+                setTimeout(function() {
+                    $('#box').animate({
+                    left: '+=100px'
+                 }).animate({
+                       top: '+=100px'
+                 });
+                }, 1000);
+            });
+        
+            // 1초마다 로그 출력 (setInterval)
+            setInterval(function () {
+                console.log('1초~');
+            }, 1000);
+            
+        });
+    </script>
+
+    <style>
+        div#box {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+            border: 1px black solid; 
+        }
+    </style>
+    <form action="">
+        <input type="checkbox" name="mycheck" id="">
+        <input type="checkbox" name="mycheck" id="">
+        <input type="checkbox" name="mycheck" id="">
+        <input type="checkbox" name="mycheck" id="">
+        <input type="checkbox" name="mycheck" id="">
+        <input type="button" id="check_all_button" value="전체 체크">
+        <input type="button" id="check_number_button" value="체크 확인">
+        <span id="check_result"> </span>
+        
+    </form>
+    <div id="box"></div>
+</body>
+</html>
