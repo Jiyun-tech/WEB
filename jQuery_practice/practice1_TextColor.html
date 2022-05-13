@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <style>
+        div#center { /* 글자 가운데 정렬 */
+            font-size: 100pt;
+            text-align: center;
+        }
+ 
+        .buttons { /* 버튼 3개 가운데 정렬 */
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        $(function() {
+
+            let text = prompt('글자를 입력하세요');
+
+            // prompt 글자 입력되지 않는 경우, 경고창 띄우기
+            // prompt 글자 입력되는 경우, 화면 가운데 띄우기
+            if(text == '' || text == null || text == " ") {
+                alert('글자를 입력해야 프로그램이 작동합니다');
+            } else {
+                $('#center').text(text);
+            }
+
+            // button 클릭에 따른 기능 (alert & color change)
+            $('#buttonRed').click(function() {
+                alert('글자가 빨간색으로 바뀝니다');
+                $('#center').css('color','#FF0000');
+            });
+
+            $('#buttonBlue').click(function() {
+                alert('글자가 파란색으로 바뀝니다');
+                $('#center').css('color','#0000FF');
+            });
+
+            $('#buttonGreen').click(function() {
+                alert('글자가 초록색으로 바뀝니다');
+                $('#center').css('color','#3CB043');
+            });
+
+        });
+    </script>
+
+    <!-- 글자 -->
+    <div id="center" align="center"> </div>
+
+    <!-- button 3개 (글자 색상 변경 기능) -->
+    <div class="buttons">
+        <button id="buttonRed" onclick="">빨강</button>
+        <button id="buttonBlue" onclick="">파랑</button>
+        <button id="buttonGreen" onclick="">초록</button>
+    </div>
+    
+</body>
+</html>
