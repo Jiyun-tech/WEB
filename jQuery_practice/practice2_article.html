@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,33 +7,30 @@
     <title>practice2 article</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
-
 <body>
     <style>
-        div {}
 
         div#title {
             display: flex;
             align-items: center;
-            width: 400px;
+            width: 350px;
             height: 50px;
             background-color: gray;
             border-color: gray;
+            left:0;
         }
 
-        span#titleText {
+        div#titleText {
             position: absolute;
+            background-color: gray;
             left: 20px;
         }
 
         div#content {
             position: relative;
             top: 0px;
-            /* display: flex;
-            align-items: center;
-            justify-content: center; */
             background-color: rgb(160, 160, 160);
-            width: 400px;
+            width: 350px;
             padding-top: 20px;
             padding-bottom: 20px;
         }
@@ -49,29 +45,36 @@
             height: 40px;
             background-color: gray;
             border: 1px black solid;
+            left:0;
         }
 
-        div.innerBox {
-            margin-top: 10px;
-            margin-bottom: 10px;
-            width: 300px;
+        div.inner {
+            width: 250px;
             background-color: antiquewhite;
             font-size: 20px;
+            padding: 5px;
+            margin-left: 45px;
+            margin-bottom: 10px;
         }
+
     </style>
     <script>
         $(function () {
             $('#button').click(function () {
-                $('#content').html("<div class=\"innerBox\"></div>");
-                $('.innerBox').append(prompt('사람 이름 입력')).append("  ").append(prompt('내용 입력')).append("</div>");
+                $("<div class=\"inner\"></div>").html("<b>"+prompt('사람 이름 입력')+"</b>").append("  ").append(prompt('내용 입력')).insertBefore('#contentBottom');
             });
 
         });
 
     </script>
 
-    <div id="title"><span id="titleText"><b>기사 등록하기</b></span></div>
-    <div id="content"></div>
+    <div id="title"><div id="titleText"><b>기사 등록하기</b></div></div>
+    <div id="content"> 
+        <div class="inner"><b>박지성</b> SBS에서 월드컵 보세요!</div> 
+        <div class="inner"><b>안정환</b> MBC죠...</div> 
+        <div class="inner"><b>이영표</b> KBS는 수신료의 가치를...</div> 
+        <div id="contentBottom"></div>
+    </div>
     <div id="button">등록하기</div>
 
 </body>
