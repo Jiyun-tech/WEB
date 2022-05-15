@@ -1,0 +1,47 @@
+<!-- 방향 키 입력받아 이미지 위치 이동하기 (상하좌우) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <style>
+        #pucca {
+            position: absolute;
+        }
+
+    </style>
+    <script>
+        // arrow key code ==> left:37 / right: 39 / up : 38 / down : 40 
+        // 상하&좌우 값은 상하 중 1개, 좌우 중 1개를 기준으로 놓고 값을 plus or minus 하는 것으로 설정
+        // top, bottom, right, left 4가지 각각 값을 설정하면 이동 오류 발생
+        $(function() {
+            $(this).keyup(function(moveEvent) {
+                if (moveEvent.keyCode == 37) { // press 'left' arrow key
+                    $('#pucca').animate({
+                        right: '+=100px'
+                    });
+                } else if (moveEvent.keyCode == 38) { // press 'up' arrow key
+                    $('#pucca').animate({
+                        top: '-=100px'
+                    });
+                } else if (moveEvent.keyCode == 39) { // press 'right' arrow key
+                    $('#pucca').animate({
+                        right: '-=100px'
+                    });
+                } else if (moveEvent.keyCode == 40) { // press 'bottom' arrow key
+                    $('#pucca').animate({
+                        top: '+=100px'
+                    });
+                }
+            });
+        })
+    </script>
+
+    <span id="pucca"> <img src="https://brand.jquery.org/resources/jquery-mark-dark.gif" alt=""></span>
+</body>
+</html>
