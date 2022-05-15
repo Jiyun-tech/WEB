@@ -1,0 +1,68 @@
+<!-- 장해물이 나오면 점프하여 피하는 캐릭터 만들기 (점프 : 스페이스바) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jump</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <style>
+        #myCharacter{
+            position: absolute;
+            top: 450px;
+        }
+        #bullet{
+            position: absolute;  
+            font-size: 150px;  
+            color: red;
+            top: 440px;
+            left: 1200px;
+        }
+        #rifle{
+            position: absolute;
+            top: 500px;
+            left: 1200px;
+        }
+    </style>
+    <script lonload="">
+        $(function() {
+            // #bullet randomly move
+            // 움직임 멈추기 위하여 setInterval 대신 setTimeout 사용
+                for (var i=0; i < 15; i++) {
+                    if (i < 20) { 
+                        var sec = Math.random()*1000;
+                        console.log(sec)
+                        setTimeout(function() { // go 100px left per random sec (0~1초 사이)
+                            $('#bullet').animate({
+                            left: '-=100px'
+                            });
+                        },sec);
+                    }
+                };
+ 
+            // #myCharacter JUMP by sapce bar
+            $(this).keyup(function(jumpEvent) {
+                if (jumpEvent.keyCode == 32) { // press space bar (keyCode: 32)
+                    setTimeout(function() { // 0.3초 delay
+                        $('#myCharacter').animate({
+                            top: '-=400px' // 위로 400px 이동
+                        })
+                    }, 500);
+                    setTimeout(function() { // 체공 시간 : 3초
+                        $('#myCharacter').animate({
+                            top: '+=400px' // 아래로 400px 이동
+                        })
+                    }, 3000);
+                } 
+            });
+        })
+    </script>
+    
+    <span id="myCharacter"><img src="https://brand.jquery.org/resources/jquery-mark-dark.gif" alt=""></span>
+    <span id="bullet"> ★ </span>
+    <span id="rifle"> <img src="http://image.yes24.com/images/chyes24/d/b/1/2/db1221b8e8266afc0e05e92399bd6530.jpg" alt=""></span>
+</body>
+</html>
