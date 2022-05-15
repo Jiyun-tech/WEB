@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onclick event by jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <style>
+        div {  /* div block 기본 스타일 설정 */
+            background-color: gray;
+            border: 1px rgb(45, 45, 45) solid;
+            color: white;
+            font-size: 20px;
+            width: 200px;
+            height: 50px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        div#htmlBox { /* htmlBox 위치 설정 */
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        div#cssBox { /* cssBox 위치 설정 */
+            position: absolute;
+            top: 20px;
+            left: 270px;
+        }
+
+        div#javaScriptBox { /* javaScriptBox 위치 설정 */
+            position: absolute;
+            top: 20px;
+            left: 520px;
+        }
+    </style>
+    <script>
+
+        $(function() {
+
+            // htmlBox를 클릭하는 경우
+            $('#htmlBox').click(function() {
+                $('#htmlBox').css('color', 'black').css('background-color','white').css('border-color', 'black');
+                $('#cssBox').css('color', 'white').css('background-color','gray').css('border-color', 'rgb(45, 45, 45');
+                $('#javaScriptBox').css('color', 'white').css('background-color','gray').css('border-color', 'rgb(45, 45, 45');
+            });
+
+            // cssBox를 클릭하는 경우
+            $('#cssBox').click(function() {
+                $('#cssBox').css('color', 'black').css('background-color','white').css('border-color', 'black');
+                $('#htmlBox').css('color', 'white').css('background-color','gray').css('border-color', 'rgb(45, 45, 45');
+                $('#javaScriptBox').css('color', 'white').css('background-color','gray').css('border-color', 'rgb(45, 45, 45');
+            });
+
+            // javaScriptBox를 클릭하는 경우
+            $('#javaScriptBox').click(function() {
+                $('#javaScriptBox').css('color', 'black').css('background-color','white').css('border-color', 'black');
+                $('#htmlBox').css('color', 'white').css('background-color','gray').css('border-color', 'rgb(45, 45, 45');
+                $('#cssBox').css('color', 'white').css('background-color','gray').css('border-color', 'rgb(45, 45, 45');
+            });
+
+        });
+
+    </script>
+
+    <div id="htmlBox">html</div>
+    <div id="cssBox">css</div>
+    <div id="javaScriptBox">JavaScript</div>
+    
+</body>
+</html>
