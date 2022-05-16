@@ -97,7 +97,7 @@
         top: 10%;
         font-size: 50px;
         font-style: bold;
-        color: white;
+        color: pink;
     }
 
     #gameStartNotice {
@@ -190,10 +190,11 @@
       $("gameStartNotice").show();
       $("#container").show;
       $('#pororo').css('filter','grayscale(0%)');
+      // 게임 시작 시, score 값 0으로 reset 후 표시
       score = 0;
       $("#score").text(`SCORE : ${score}`);
       isGameOver = false;
-
+      // snowBall 위치 되돌리기
       snowBall.css({ left: "78%" });
     }
 
@@ -229,8 +230,6 @@
             if (isGameOver) {
             gameOver();
             } else {
-            // 1초에 30번 그리기
-
             // 뽀로로 사망 체크
             pororoDead();
             }
@@ -248,5 +247,4 @@
     })
   </script>
 </body>
-
 </html>
