@@ -1,5 +1,6 @@
 <!-- 방향 키 입력받아 이미지 위치 이동하기 (상하좌우) -->
 <!-- Keycode 사용 X ==> Key 로 변경 -->
+<!-- 지정한 border 경계 넘어가면 움직이지 않도록 설정 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,25 +67,25 @@
                 if (moveEvent.keyCode == 'ArrowLeft') { // press 'left' arrow key
                     if (IMG_LEFT-MOVE >= LEFT_WALL) {
                         $('#jQueryIMG').animate({
-                            left: '-=' + MOVE + 'px'
+                            left: '-=' + MOVE + 'px' 
                         });
                     } 
                 } else if (moveEvent.key == 'ArrowRight') { // press 'right' arrow key
                    if (IMG_RIGHT+MOVE <= RIGHT_WALL){
                          $('#jQueryIMG').animate({
-                            left: '+=' + MOVE + 'px'
+                            left: '+=' + MOVE + 'px' 
                         });
                     } 
                 } else if (moveEvent.key == 'ArrowUp') { // press 'up' arrow key
                     if (IMG_TOP-MOVE >= TOP_WALL) {
                         $('#jQueryIMG').animate({
-                            top: '-=' + MOVE + 'px'
-                       });
+                            top: '-=' + MOVE + 'px' 
+                        });
                     }
                 } else if (moveEvent.key == 'ArrowDown') { // press 'bottom' arrow key
                     if (IMG_BOTTOM+MOVE <= BOTTOM_WALL) {
                         $('#jQueryIMG').animate({
-                         top: '+=' + MOVE + 'px'
+                         top: '+=' + MOVE + 'px' 
                         });
                     }
                 }
