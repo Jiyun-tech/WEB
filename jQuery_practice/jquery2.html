@@ -1,70 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <title>Document</title>
 </head>
+
 <body>
-    <script>
-        // onload
-        $(function() {
-            $('#check_all_button').click(function() {
-                $(':checkbox[name=mycheck]').each(function() {
-                    this.checked = true;
-                });
-            });
-            $('#check_number_button').click(function() {
-                if ($(':checkbox[name=mycheck]').is(':checked') == true) {
-                    $('#check_result').text('OK');
-                } else {
-                    $('#check_result').text('NO');
-                }
-            })
+  <style>
+    #ghost {
+      position: absolute;
+      width: 250px;
+      height: 200px;
+      object-fit: none;
+      object-position: 50% 40%;
+      left: 250px;
+      top: 200px;
+    }
 
-            //animation
-            $('#box').click(function() {
-                // JavaScript 내장 함수 (jQuery와 무관)
-                // 1초 후에 애니메이션 시작
-                setTimeout(function() {
-                    $('#box').animate({
-                    left: '+=100px'
-                 }).animate({
-                       top: '+=100px'
-                 });
-                }, 1000);
-            });
-        
-            // 1초마다 로그 출력 (setInterval)
-            setInterval(function () {
-                console.log('1초~');
-            }, 1000);
-            
-        });
-    </script>
+    #box {
+      position: absolute;
+      width: 800px;
+      height: 600px;
+      border: 5px solid;
+      color: rgb(115, 82, 82);
+    }
+  </style>
 
-    <style>
-        div#box {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background-color: pink;
-            border: 1px black solid; 
+  <script>
+    $(function (e) {
+      const SPEED = 1 / 2
+
+      const LEFT_KEYCODE = 37
+      const UP_KEYCODE = 38
+      const RIGHT_KEYCODE = 39
+      const DOWN_KEYCODE = 40
+      const LEFT_WALL = parseInt($("#box").css("left")) + parseInt($("#box").css("border"))
+      const TOP_WALL = parseInt($("#box").css("top")) + parseInt($("#box").css("border"))
+      const RIGHT_WALL = parseInt($("#box").css("left")) + parseInt($("#box").css("width")) + parseInt($("#box").css("border"))
+      const BOTTOM_WALL = parseInt($("#box").css("top")) + parseInt($("#box").css("height")) + parseInt($("#box").css("border"))
+      const CHAR_WIDTH = parseInt($("#ghost").css("width"))
+      const CHAR_HEIGHT = parseInt($("#ghost").css("height"))
+
+      keyPressed = [];
+
+      $(document).on("keydown", function (e) {
+        if (keyPressed.includes(e.which) == false) {
+          $("#ghost").stop(true);
+          keyPressed.unshift(e.which);
+          getDirection();
+          e.preventDefault();
         }
-    </style>
-    <form action="">
-        <input type="checkbox" name="mycheck" id="">
-        <input type="checkbox" name="mycheck" id="">
-        <input type="checkbox" name="mycheck" id="">
-        <input type="checkbox" name="mycheck" id="">
-        <input type="checkbox" name="mycheck" id="">
-        <input type="button" id="check_all_button" value="전체 체크">
-        <input type="button" id="check_number_button" value="체크 확인">
-        <span id="check_result"> </span>
-        
-    </form>
-    <div id="box"></div>
+      });
+
+      $(document).on("keyup", function (e) {
+        if (keyPressed.indexOf(e.which) == 0) {
+          $("#ghost").stop(true);
+        }
+        keyPressed.splice(keyPressed.indexOf(e.which), 1)
+        getDirection();
+        e.preventDefault();
+      });
+
+      function getDirection() {
+        positionX = parseInt($("#ghost").css("left"))
+        positionY = parseInt($("#ghost").css("top"))
+
+        if (keyPressed[0] == LEFT_KEYCODE) {
+          $("#ghost").animate({
+            left: "-=" + (positionX - LEFT_WALL) + "px"
+          }, (positionX - LEFT_WALL) / SPEED, function () {
+            $(this).stop(true)
+          })
+        } else if (keyPressed[0] == UP_KEYCODE) {
+          $("#ghost").animate({
+            top: "-=" + (positionY - TOP_WALL) + "px"
+          }, (positionY - TOP_WALL) / SPEED, function () {
+            $(this).stop(true)
+          })
+        } else if (keyPressed[0] == RIGHT_KEYCODE) {
+          $("#ghost").animate({
+            left: "+=" + (RIGHT_WALL - positionX - CHAR_WIDTH) + "px"
+          }, (RIGHT_WALL - positionX - CHAR_WIDTH) / SPEED, function () {
+            $(this).stop(true)
+          })
+        } else if (keyPressed[0] == DOWN_KEYCODE) {
+          $("#ghost").animate({
+            top: "+=" + (BOTTOM_WALL - positionY - CHAR_HEIGHT) + "px"
+          }, (BOTTOM_WALL - positionY - CHAR_HEIGHT) / SPEED, function () {
+            $(this).stop(true)
+          })
+        }
+      }
+
+    })
+  </script>
+
+  <img id="ghost" src="https://i.pinimg.com/564x/8a/6a/7c/8a6a7c06b5a1e0bcd9126181b01cfdaa.jpg" alt="">
+  <span id="box"></span>
 </body>
+
 </html>
