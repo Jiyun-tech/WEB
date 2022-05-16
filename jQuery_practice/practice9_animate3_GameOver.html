@@ -241,21 +241,22 @@
     }
 
     // Pororo의 스노우볼 ==> keydown(ArrowDown)으로 발사
-    // 발사 후, 100점 추가
+    // Issue : 단 한 번만 작동하고, 그 후에는 작동하지 않음 (ㅠㅠ 왜?!)
+    // Issue : 발사 후, 100점 추가 (==> 기능 구현이 안 됨)
     function shootsnowBallPororo() {
-      snowBallPororo.show();
+
       let startLocation = parseInt(pororo.css("left").replace("px",""));
       let endLocation = parseInt(kron.css("left").replace("px","")) + parseInt(snowBallPororo.css("width").replace("px",""));
-      snowBallPororo.css({ left: startLocation });
-      snowBallPororo.animate({left: endLocation}, 3000, function() { 
+      
+      snowBallPororo.css({ left: startLocation }).show().animate({left: endLocation}, 3000, function() { 
         snowBallPororo.hide();
       });
 
       if (isGameOver == false) {
-        setTimeout(shootsnowBallPororo(), 3500);
+        setTimeout(shootsnowBallPororo(), 2000);
           score += 100;
           $("#score").text(`SCORE : ${score}`);
-        }
+      }
     }
 
 
