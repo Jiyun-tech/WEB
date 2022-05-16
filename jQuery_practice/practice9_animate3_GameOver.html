@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+  <style>
+    #container {
+        position: absolute;
+        width: 100%;
+        height: 600px;
+        top: 50px;
+        border: 1px black solid;
+    }
+
+    html,
+    body {
+        margin: 0;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    #pororo {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        bottom: 20px;
+        left: 20%;
+    }
+
+    #pororo.black {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        bottom: 20px;
+        left: 20%;
+        filter: grayscale(80%)
+    }
+
+    #snowBall {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        bottom: 100px;
+        left: 78%;
+    }
+
+    #kron {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        bottom: 20px;
+        left: 70%;
+    }
+
+    #background {
+      position: absolute;
+      width: 200%;
+      height: 100%;
+      background: url("../Assets/PORORO_HOUSE.jpg");
+      background-size: contain;
+      animation-name: bg-slide;
+      animation-duration: 20s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+
+    #score {
+      position: absolute;
+      color: white;
+      font-size: 2rem;
+      left: 20px;
+      top: 20px;
+    }
+
+    @keyframes bg-slide {
+      from {
+        left: 0px;
+      }
+
+      to {
+        left: -100%;
+      }
+    }
+
+    #gameOverAlert {
+        position: absolute;
+        left: 40%;
+        top: 10%;
+        font-size: 50px;
+        font-style: bold;
+        color: white;
+    }
+
+    #gameStartNotice {
+        position: absolute;
+        left: 40%;
+        top: 20%;
+        font-size: 20px;
+        font-style: bold;
+        color: white;
+    }
+    .grayscale {
+        filter: grayscale(80%);
+    }
+
+  </style>
+
+  <div id="container">
+    <div id="background"></div>
+
+    <img id="pororo" src="..\Assets\PORORO.png" alt="">
+    <img id="kron" src="..\Assets\KRON.png" alt="">
+    <img id="snowBall" src="..\Assets\SNOWBALL.png" alt="">
+    <div id="score">SCORE : 0</div>
+    <div id="gameOverAlert">GAME OVER</div>
+    <div id="gameStartNotice">Press Enter Key to Start Game</div>
+  </div>
+
+  <script>
+    const WIDTH = 1200;
+    const HEIGHT = 600;
+
+    let pororo = $("#pororo");
+    let snowBall = $("#snowBall");
+
+    // 상태
+    let isJumping = false;
+    let isGameOver = false;
+    let score = 0;
+
+    function jump() {
+      if (isJumping || isGameOver) {
+        return;
+      }
+
+      isJumping = true;
+      pororo.animate({ bottom: "+=150px" }, 500)
+        .animate({ bottom: "-=150px" }, 500, function () {
+          isJumping = false;
+        });
+    }
+
+    function movesnowBall() {
+      snowBall.animate({ left: "0%" }, 3000, function () {
+        snowBall.css({ left: "78%" });
+
+        if (isGameOver == false) {
+          setTimeout(movesnowBall, 1000);
+          score += 100;
+          $("#score").text(`SCORE : ${score}`);
+        }
+      });
+    }
+
+    function pororoDead() {
+      let snowBallLeft = parseInt(snowBall.css("left").replace("px", ""));
+      let pororoLeft = parseInt(pororo.css("left").replace("px", ""));
+      let pororoRight = pororoLeft + 100;
+
+      if (isJumping == false
+        && pororoRight > snowBallLeft
+        && snowBallLeft > pororoLeft
+      ) {
+        isGameOver = true;
+      }
+    }
+
+    function gameOver() {
+      isGameOver = true;
+      snowBall.stop();
+
+      // 게임오버 화면 보여주기
+      $("#gameOverAlert").show();
+      $("#gameStartNotice").show();
+      $("#container").hide;
+      $('#pororo').css('filter','grayscale(100%)');
+    }
+
+    function gameStart() {
+      $("#gameOverAlert").hide();
+      $("gameStartNotice").show();
+      $("#container").show;
+      $('#pororo').css('filter','grayscale(0%)');
+      score = 0;
+      $("#score").text(`SCORE : ${score}`);
+      isGameOver = false;
+
+      snowBall.css({ left: "78%" });
+    }
+
+    $("body").keydown(function (event) {
+      // PORORO 현재 좌표 정보
+      let left = parseInt(pororo.css("left").replace("px", ""));
+      let top = parseInt(pororo.css("top").replace("px", ""));
+      let right = left + 100;
+      let bottom = top + 100;
+      let move = 25;  // 이동할 픽셀
+
+      switch (event.key) {
+        case " ":
+          jump();
+          break;
+      }
+    });
+
+    // Enter Key ==> 게임 시작
+    $(document).keydown(function(event) {
+       if (event.key == "Enter") {
+        gameStart();
+        game();
+       }
+    });
+
+    function game() {
+        $("#gameStartNotice").hide();
+        setTimeout(movesnowBall, 1000);
+
+      // 게임 화면 그리기 30frame
+            setInterval(function () {
+            if (isGameOver) {
+            gameOver();
+            } else {
+            // 1초에 30번 그리기
+
+            // 뽀로로 사망 체크
+            pororoDead();
+            }
+        }, 1000 / 30);
+        }
+
+    $(function () {
+        gameStart();
+
+        $(document).keydown(function(event) {
+            if (event.key == "Enter") {
+                game();
+            };
+        });
+    })
+  </script>
+</body>
+
+</html>
