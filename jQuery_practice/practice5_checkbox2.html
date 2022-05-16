@@ -57,10 +57,10 @@
 
             // 로그 버튼 클릭하는 경우 ==> 제목 console.log로 출력하는 기능 구현 필요
             $('#log').click(function() {
-                $('input:check[class=checkItem]').each(function() {
+                $('input:checkbox[class=checkItem]').each(function() {
                     if (this.checked) {
                         let indexNum = $(':checkbox[class=checkItem]').index(this);
-                        console.elog(`${$(".title")[indexNum].textContent}\n`);
+                        console.log($(".title")[indexNum].textContent);
                     }
                 })
             })
@@ -74,7 +74,7 @@
 <!-- 카테고리 -->
         <tr > 
             <td class="check"> <input type="checkbox" id="check_all"> 확인</td>
-            <td class="title">제목</td>
+            <td class="titleOfTitle">제목</td>
             <td class="time">글 쓴 시간</td>
         </tr>
         <!-- 리스트 -->
