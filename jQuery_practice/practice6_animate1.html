@@ -1,4 +1,5 @@
 <!-- 방향 키 입력받아 이미지 위치 이동하기 (상하좌우) -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,38 +11,92 @@
 </head>
 <body>
     <style>
-        #pucca {
+        #borderLine {
+            position:absolute;
+            display: inline-block;
+            width: 800px;
+            height: 800px;
+            border-width: 5px; 
+            border-color: aquamarine;
+            border-style: solid;
+        }
+
+        #jQueryIMG {
             position: absolute;
+            width: 200px;
+            height: 200px;
         }
 
     </style>
+
+    <div id="borderLine">
+        <img id="jQueryIMG" src="https://brand.jquery.org/resources/jquery-mark-dark.gif" alt="">
+    </div>
+
     <script>
+
         // arrow key code ==> left:37 / right: 39 / up : 38 / down : 40 
+        const KEYCODE_LEFT = 37;
+        const KEYCODE_RIGHT = 39;
+        const KEYCODE_UP = 38;
+        const KEYCODE_DOWN = 40;
+
+        // 경계선 좌표
+        const LEFT_WALL = parseInt($('#borderLine').css('left')) + parseInt($('#borderLine').css('border-width'));
+        const RIGHT_WALL = parseInt($('#borderLine').css('left')) + parseInt($('#borderLine').css('width')) + parseInt($('#borderLine').css('border-width'));;
+        const TOP_WALL = parseInt($('#borderLine').css('top')) + parseInt($('#borderLine').css('border-width'));
+        const BOTTOM_WALL = parseInt($('#borderLine').css('top'))  + parseInt($('#borderLine').css('height')) + parseInt($('#borderLine').css('border-width'));
+       
+        // 캐릭터 크기
+        const CHAR_WIDTH = parseInt($('#jQueryIMG').css('height'));
+        const CHAR_HEIGHT = parseInt($('#jQueryIMG').css('height'));
+        const MOVE = 50;
+
+        // 캐릭터 위치
+        let IMG_LEFT = parseInt($('#jQueryIMG').css('left')) + LEFT_WALL;
+        let IMG_RIGHT = IMG_LEFT + CHAR_WIDTH;
+        let IMG_TOP = parseInt($('#jQueryIMG').css('top')) + TOP_WALL;
+        let IMG_BOTTOM = IMG_TOP + CHAR_HEIGHT;
+
+
         // 상하&좌우 값은 상하 중 1개, 좌우 중 1개를 기준으로 놓고 값을 plus or minus 하는 것으로 설정
         // top, bottom, right, left 4가지 각각 값을 설정하면 이동 오류 발생
         $(function() {
+
             $(this).keyup(function(moveEvent) {
-                if (moveEvent.keyCode == 37) { // press 'left' arrow key
-                    $('#pucca').animate({
-                        right: '+=100px'
-                    });
-                } else if (moveEvent.keyCode == 38) { // press 'up' arrow key
-                    $('#pucca').animate({
-                        top: '-=100px'
-                    });
-                } else if (moveEvent.keyCode == 39) { // press 'right' arrow key
-                    $('#pucca').animate({
-                        right: '-=100px'
-                    });
-                } else if (moveEvent.keyCode == 40) { // press 'bottom' arrow key
-                    $('#pucca').animate({
-                        top: '+=100px'
-                    });
+
+                IMG_LEFT = parseInt($('#jQueryIMG').css('left')) + LEFT_WALL;
+                IMG_RIGHT = IMG_LEFT + CHAR_WIDTH;
+                IMG_TOP = parseInt($('#jQueryIMG').css('top')) + TOP_WALL;
+                IMG_BOTTOM = IMG_TOP + CHAR_HEIGHT;
+
+                if (moveEvent.keyCode == KEYCODE_LEFT) { // press 'left' arrow key
+                    if (IMG_LEFT-MOVE >= LEFT_WALL) {
+                        $('#jQueryIMG').animate({
+                            left: '-=' + MOVE + 'px'
+                        });
+                    } 
+                } else if (moveEvent.keyCode == KEYCODE_RIGHT) { // press 'right' arrow key
+                   if (IMG_RIGHT+MOVE <= RIGHT_WALL){
+                         $('#jQueryIMG').animate({
+                            left: '+=' + MOVE + 'px'
+                        });
+                    } 
+                } else if (moveEvent.keyCode == KEYCODE_UP) { // press 'up' arrow key
+                    if (IMG_TOP-MOVE >= TOP_WALL) {
+                        $('#jQueryIMG').animate({
+                            top: '-=' + MOVE + 'px'
+                       });
+                    }
+                } else if (moveEvent.keyCode == KEYCODE_DOWN) { // press 'bottom' arrow key
+                    if (IMG_BOTTOM+MOVE <= BOTTOM_WALL) {
+                        $('#jQueryIMG').animate({
+                         top: '+=' + MOVE + 'px'
+                        });
+                    }
                 }
             });
         })
     </script>
-
-    <span id="pucca"> <img src="https://brand.jquery.org/resources/jquery-mark-dark.gif" alt=""></span>
 </body>
 </html>
