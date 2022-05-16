@@ -60,7 +60,7 @@
                 $('input:checkbox[class=checkItem]').each(function() {
                     if (this.checked) {
                         let indexNum = $(':checkbox[class=checkItem]').index(this);
-                        console.log($(".title")[indexNum].textContent);
+                        console.log(`${$(".title")[indexNum].textContent}\n`);
                     }
                 })
             })
