@@ -20,6 +20,12 @@
             width: 500px;
             border: 1px solid black;
         }
+        th {
+            height: 40px;
+            width: 500px;
+            border: 1px solid black;
+            border-bottom: 2px solid black;
+        }
 
         div#log {
             position: relative;
@@ -42,28 +48,39 @@
 
             // 확인 박스 체크 시 --> 전체 리스트 체크 동기화
             $('input:checkbox[id=check_all]').click(function() {
-                // 확인 박스 클릭하여 체크가 해제된 경우 ==> 모든 리스트 체크 해제
-                if ($('input:checkbox[id=check_all]').is(':checked') == false) {
-                 $('input:checkbox[class=checkItem]').each(function() {
-                    this.checked = false;
-                 })
-                // 확인 박스 클릭하여 체크가 설정된 경우 ==> 모든 리스트 체크
-                } else if ($('input:checkbox[id=check_all]').is(':checked') == true) {
-                 $('input:checkbox[class=checkItem]').each(function() {
-                    this.checked = true;
-                 })
-                }
+                // // 확인 박스 클릭하여 체크가 해제된 경우 ==> 모든 리스트 체크 해제
+                // if ($('input:checkbox[id=check_all]').is(':checked') == false) {
+                //  $('input:checkbox[class=checkItem]').each(function() {
+                //     this.checked = false;
+                //  })
+                // // 확인 박스 클릭하여 체크가 설정된 경우 ==> 모든 리스트 체크
+                // } else if ($('input:checkbox[id=check_all]').is(':checked') == true) {
+                //  $('input:checkbox[class=checkItem]').each(function() {
+                //     this.checked = true;
+                //  })
+                // }
+
+                // 코드 줄이기
+                // prop ==> 전체에 적용
+                // this.checked ('check_all'의 체크 여부에 따라 true or flase 반환)
+                $('input:checkbox[class=checkItem]').prop("checked",this.checked)
+
+
             });
 
             // 로그 버튼 클릭하는 경우 ==> 제목 console.log로 출력하는 기능 구현 필요
             $('#log').click(function() {
-                $('input:checkbox[class=checkItem]').each(function() {
-                    if (this.checked) {
-                        let indexNum = $(':checkbox[class=checkItem]').index(this);
-                        console.log(`${$(".title")[indexNum].textContent}\n`);
-                    }
-                })
-            })
+                if ($('input:checkbox[class=checkItem]').is(":checked") == true) {
+                    $('input:checkbox[class=checkItem]').each(function() {
+                        if (this.checked) {
+                            let indexNum = $(':checkbox[class=checkItem]').index(this);
+                            console.log(`${$(".title")[indexNum].textContent}\n`);
+                        }
+                    })
+                } else {
+                    alert('선택 없음');
+                }
+                });
 
             });
 
@@ -73,9 +90,10 @@
         
 <!-- 카테고리 -->
         <tr > 
-            <td class="check"> <input type="checkbox" id="check_all"> 확인</td>
-            <td class="titleOfTitle">제목</td>
-            <td class="time">글 쓴 시간</td>
+            <!-- <th></th> : 글자 bold -->
+            <th class="check"> <input type="checkbox" id="check_all"> 확인</th>
+            <th class="titleOfTitle">제목</th>
+            <th class="time">글 쓴 시간</tth>
         </tr>
         <!-- 리스트 -->
         <tr>
