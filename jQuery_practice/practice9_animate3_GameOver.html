@@ -128,16 +128,16 @@
     }
 
   </style>
-  <div id="title"> SnowballKron Fight with Pororo & Kron  </div>
+  <div id="title"> Snowball Fight with Pororo & Kron  </div>
   <div id="howTo"> 
-    Hey Pororo! Let's have a snowballKron fight with me! <br><br>
-    1. Use space bar to jump to escape from snow balls. <br>
+    Hey Pororo! Let's have a snowball fight with me! <br><br>
+    1. Use space bar to jump to escape from snowballs. <br>
     2. Use ArrowRight (→) and ArrowLeft (←) to move forward & backward. <br>
-    3. 100 points will be earned for each snow ball if you succed to escape from it. <br>
+    3. 100 points will be earned for each snowball if you succed to escape from it. <br>
     4. 100 points will be earned if you suceed to jump over Kron. <br> 
-    5. 100 points will be earned if you shoot snow ball to Kron. <br>
-    6. The game will be over if you fail to avoid snow ball. <br>
-    7. Warning! Speed of snow ball can be different every time!
+    5. 100 points will be earned if you shoot a snowball to Kron. <br>
+    6. The game will be over if you fail to avoid snowball. <br>
+    7. Warning! Speed of snowballs can be different every time!
   </div>
 
   <div id="container">
@@ -249,7 +249,7 @@
       let endLocation = parseInt(kron.css("left").replace("px","")) + parseInt(snowBallPororo.css("width").replace("px",""));
       
       snowBallPororo.css({ left: startLocation }).show().animate({left: endLocation}, 3000, function() { 
-        snowBallPororo.hide();
+        snowBallPororo.hide().css({left: startLocation });
       });
 
       if (isGameOver == false) {
