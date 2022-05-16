@@ -1,5 +1,5 @@
 <!-- 방향 키 입력받아 이미지 위치 이동하기 (상하좌우) -->
-
+<!-- Keycode 사용 X ==> Key 로 변경 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,13 +34,6 @@
     </div>
 
     <script>
-
-        // arrow key code ==> left:37 / right: 39 / up : 38 / down : 40 
-        const KEYCODE_LEFT = 37;
-        const KEYCODE_RIGHT = 39;
-        const KEYCODE_UP = 38;
-        const KEYCODE_DOWN = 40;
-
         // 경계선 좌표
         const LEFT_WALL = parseInt($('#borderLine').css('left')) + parseInt($('#borderLine').css('border-width'));
         const RIGHT_WALL = parseInt($('#borderLine').css('left')) + parseInt($('#borderLine').css('width')) + parseInt($('#borderLine').css('border-width'));;
@@ -70,25 +63,25 @@
                 IMG_TOP = parseInt($('#jQueryIMG').css('top')) + TOP_WALL;
                 IMG_BOTTOM = IMG_TOP + CHAR_HEIGHT;
 
-                if (moveEvent.keyCode == KEYCODE_LEFT) { // press 'left' arrow key
+                if (moveEvent.keyCode == 'ArrowLeft') { // press 'left' arrow key
                     if (IMG_LEFT-MOVE >= LEFT_WALL) {
                         $('#jQueryIMG').animate({
                             left: '-=' + MOVE + 'px'
                         });
                     } 
-                } else if (moveEvent.keyCode == KEYCODE_RIGHT) { // press 'right' arrow key
+                } else if (moveEvent.key == 'ArrowRight') { // press 'right' arrow key
                    if (IMG_RIGHT+MOVE <= RIGHT_WALL){
                          $('#jQueryIMG').animate({
                             left: '+=' + MOVE + 'px'
                         });
                     } 
-                } else if (moveEvent.keyCode == KEYCODE_UP) { // press 'up' arrow key
+                } else if (moveEvent.key == 'ArrowUp') { // press 'up' arrow key
                     if (IMG_TOP-MOVE >= TOP_WALL) {
                         $('#jQueryIMG').animate({
                             top: '-=' + MOVE + 'px'
                        });
                     }
-                } else if (moveEvent.keyCode == KEYCODE_DOWN) { // press 'bottom' arrow key
+                } else if (moveEvent.key == 'ArrowDown') { // press 'bottom' arrow key
                     if (IMG_BOTTOM+MOVE <= BOTTOM_WALL) {
                         $('#jQueryIMG').animate({
                          top: '+=' + MOVE + 'px'
