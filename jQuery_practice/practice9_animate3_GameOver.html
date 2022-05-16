@@ -11,11 +11,27 @@
 
 <body>
   <style>
+    #title {
+        position: absolute;
+        display: inline-block;
+        left: 30%;
+        font-size: 30px;
+        color: navy
+    }
+    #howTo {
+      position: absolute;
+        display: inline-block;
+        top: 60px;
+        left: 30%;
+        font-size: 15px;
+        font-style: italic;
+    }
+
     #container {
         position: absolute;
         width: 100%;
         height: 600px;
-        top: 50px;
+        top: 250px;
         border: 1px black solid;
     }
 
@@ -30,34 +46,33 @@
 
     #pororo {
         position: absolute;
-        width: 200px;
-        height: 200px;
-        bottom: 20px;
+        width: 150px;
+        height: 150px;
+        bottom: 5%;
         left: 20%;
     }
 
-    #pororo.black {
-        position: absolute;
-        width: 200px;
-        height: 200px;
-        bottom: 20px;
-        left: 20%;
-        filter: grayscale(80%)
-    }
-
-    #snowBall {
+    #snowBallPororo {
         position: absolute;
         width: 50px;
         height: 50px;
-        bottom: 100px;
-        left: 78%;
+        bottom: 15%;
+        left: 20%;
+    }
+
+    #snowBallKron {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        bottom: 15%;
+        left: 75%;
     }
 
     #kron {
         position: absolute;
-        width: 200px;
-        height: 200px;
-        bottom: 20px;
+        width: 150px;
+        height: 150px;
+        bottom: 5%;
         left: 70%;
     }
 
@@ -77,8 +92,8 @@
       position: absolute;
       color: white;
       font-size: 2rem;
-      left: 20px;
-      top: 20px;
+      left: 2%;
+      top: 2%;
     }
 
     @keyframes bg-slide {
@@ -113,13 +128,26 @@
     }
 
   </style>
+  <div id="title"> SnowballKron Fight with Pororo & Kron  </div>
+  <div id="howTo"> 
+    Hey Pororo! Let's have a snowballKron fight with me! <br><br>
+    1. Use space bar to jump to escape from snow balls. <br>
+    2. Use ArrowRight (→) and ArrowLeft (←) to move forward & backward. <br>
+    3. 100 points will be earned for each snow ball if you succed to escape from it. <br>
+    4. 100 points will be earned if you suceed to jump over Kron. <br> 
+    5. 100 points will be earned if you shoot snow ball to Kron. <br>
+    6. The game will be over if you fail to avoid snow ball. <br>
+    7. Warning! Speed of snow ball can be different every time!
+  </div>
 
   <div id="container">
     <div id="background"></div>
 
     <img id="pororo" src="..\Assets\PORORO.png" alt="">
     <img id="kron" src="..\Assets\KRON.png" alt="">
-    <img id="snowBall" src="..\Assets\SNOWBALL.png" alt="">
+    <img id="snowBallKron" src="..\Assets\SNOWBALL.png" alt="">
+    <img id="snowBallPororo" src="..\Assets\SNOWBALL.png" alt="">
+
     <div id="score">SCORE : 0</div>
     <div id="gameOverAlert">GAME OVER</div>
     <div id="gameStartNotice">Press Enter Key to Start Game</div>
@@ -130,11 +158,15 @@
     const HEIGHT = 600;
 
     let pororo = $("#pororo");
-    let snowBall = $("#snowBall");
+    let kron = $("#kron");
+    let snowBallKron = $("#snowBallKron");
+    let snowBallPororo = $("#snowBallPororo");
 
     // 상태
     let isJumping = false;
     let isGameOver = false;
+    let isGoingRight = false;
+    let isGoingLeft = false;
     let score = 0;
 
     function jump() {
@@ -147,28 +179,94 @@
         .animate({ bottom: "-=150px" }, 500, function () {
           isJumping = false;
         });
+
+      if (isGameOver == false ) {
+        if (parseInt(pororo.css('left').replace("px","")) 
+            < parseInt($('#kron').css('left').replace("px",""))+parseInt($('#kron').css('width').replace("px",""))
+            && 
+            parseInt(pororo.css('left').replace("px",""))+parseInt(pororo.css('width').replace("px",""))
+            > parseInt($('#kron').css('left').replace("px",""))) {
+
+            setTimeout(jump, 1000);
+            score += 100;
+            $("#score").text(`SCORE : ${score}`);
+
+            }
+      }
     }
 
-    function movesnowBall() {
-      snowBall.animate({ left: "0%" }, 3000, function () {
-        snowBall.css({ left: "78%" });
+    function goRight() {
+      if (isJumping || isGameOver || isGoingRight || isGoingLeft) {
+        return;
+      }
+
+      isGoingRight = true;
+      if (parseInt(pororo.css('left').replace("px",""))+parseInt(pororo.css('width').replace("px","")) 
+          < parseInt($('#kron').css('left').replace("px",""))+parseInt($('#kron').css('width').replace("px",""))) { 
+      pororo.animate({ left: "+=100px" }, 500, function () {
+        isGoingRight = false;
+      })
+      } else {
+        isGoingRight = false;
+      }
+    };
+
+    function goLeft() {
+      if (isJumping || isGameOver || isGoingRight || isGoingLeft) {
+        return;
+      }
+
+      isGoingLeft = true;
+
+      if (parseInt(pororo.css('left').replace("px","")) > parseInt($('#container').css('left').replace("px",""))) { 
+      pororo.animate({ left: "-=100px" }, 500, function () {
+        isGoingLeft = false;
+        });
+      } else {
+        isGoingLeft = false;
+      }
+    }
+
+    // Kron의 스노우볼 ==> 자동으로 발사됨
+    function movesnowBallKron() {
+      snowBallKron.animate({ left: "0%" }, 3000, function () {
+        snowBallKron.css({ left: "75%" });
 
         if (isGameOver == false) {
-          setTimeout(movesnowBall, 1000);
+          setTimeout(movesnowBallKron(), 3500);
           score += 100;
           $("#score").text(`SCORE : ${score}`);
         }
       });
     }
 
+    // Pororo의 스노우볼 ==> keydown(ArrowDown)으로 발사
+    // 발사 후, 100점 추가
+    function shootsnowBallPororo() {
+      snowBallPororo.show();
+      let startLocation = parseInt(pororo.css("left").replace("px",""));
+      let endLocation = parseInt(kron.css("left").replace("px","")) + parseInt(snowBallPororo.css("width").replace("px",""));
+      snowBallPororo.css({ left: startLocation });
+      snowBallPororo.animate({left: endLocation}, 3000, function() { 
+        snowBallPororo.hide();
+      });
+
+      if (isGameOver == false) {
+        setTimeout(shootsnowBallPororo(), 3500);
+          score += 100;
+          $("#score").text(`SCORE : ${score}`);
+        }
+    }
+
+
     function pororoDead() {
-      let snowBallLeft = parseInt(snowBall.css("left").replace("px", ""));
+      let snowBallKronLeft = parseInt(snowBallKron.css("left").replace("px", ""));
       let pororoLeft = parseInt(pororo.css("left").replace("px", ""));
       let pororoRight = pororoLeft + 100;
 
       if (isJumping == false
-        && pororoRight > snowBallLeft
-        && snowBallLeft > pororoLeft
+        && pororoRight > snowBallKronLeft
+        && snowBallKronLeft > pororoLeft
       ) {
         isGameOver = true;
       }
@@ -176,7 +274,7 @@
 
     function gameOver() {
       isGameOver = true;
-      snowBall.stop();
+      snowBallKron.stop();
 
       // 게임오버 화면 보여주기
       $("#gameOverAlert").show();
@@ -194,21 +292,26 @@
       score = 0;
       $("#score").text(`SCORE : ${score}`);
       isGameOver = false;
-      // snowBall 위치 되돌리기
-      snowBall.css({ left: "78%" });
+      // snowBallKron & pororo 위치 되돌리기
+      snowBallKron.css({ left: "75%" });
+      snowBallPororo.css({ left: "20%" });
+      snowBallPororo.hide();
+      pororo.css({ left: "20%" });
     }
 
     $("body").keydown(function (event) {
-      // PORORO 현재 좌표 정보
-      let left = parseInt(pororo.css("left").replace("px", ""));
-      let top = parseInt(pororo.css("top").replace("px", ""));
-      let right = left + 100;
-      let bottom = top + 100;
-      let move = 25;  // 이동할 픽셀
-
       switch (event.key) {
         case " ":
           jump();
+          break;
+        case "ArrowRight":
+          goRight();
+          break;
+        case "ArrowLeft" :
+          goLeft();
+          break;
+        case "ArrowDown" :
+          shootsnowBallPororo();
           break;
       }
     });
@@ -223,7 +326,7 @@
 
     function game() {
         $("#gameStartNotice").hide();
-        setTimeout(movesnowBall, 1000);
+        setTimeout(movesnowBallKron, 1000);
 
       // 게임 화면 그리기 30frame
             setInterval(function () {
