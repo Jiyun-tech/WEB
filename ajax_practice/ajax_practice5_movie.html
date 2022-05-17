@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX5 - 영화 정보</title>
+    <!-- jQuery 사용 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    
+    <script>
+        $(function() {
+            loadMovieInfo(); // 페이지 로드 시 함수 실행
+        })
+        
+        // 가져올 정보에 대한 Request 보내기
+        function showDetails(movieID) {
+            window.location.href=`ajax_practice5_movieDetail.html?id=${movieID}`;
+        }
+
+        // 영화 정보 페이지 로드
+        function loadMovieInfo() {
+            // 영화 정보 jason data 링크로 접속하기
+            fetch('https://api.themoviedb.org/3/movie/upcoming?api_key=a64533e7ece6c72731da47c9c8bc691f&language=ko-KR&page=1') 
+                // json 데이터 받아오기
+                .then(response => response.json())
+                .then(jsonArray => {
+                    // 받은 json database에서, "results" 항목 전체 데이터 확인 (array 0 ~ last)
+                    jsonArray.results.forEach((movieData,index) => {
+                        // #movieList에 results 데이터 중, id, poster_path 값 받아 붙이기
+                        $('#movieList').append(`<div id="oneMovie" onclick="showDetails(${movieData.id})">
+                                                    <img id="poster" src="https://image.tmdb.org/t/p/w500${movieData.poster_path}" alt="Image Load is failed">
+                                                    <div id="title">${movieData.title}</div>
+                                                </div>`);
+
+                    });
+                });
+        };
+    </script>
+    <style>
+        #oneMovie{
+            display: inline-block;
+            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
+            transition: 0.3s;
+            width: 28%;
+            height: 50%;
+            border-radius: 10px;
+            text-align: center;
+            padding: 1%;
+            margin: 1%;
+            background-color: rgb(75, 97, 90);
+        }
+        #poster {
+            width: 80%;
+            height: 80%;
+            border-radius: 10px;
+        }
+        #title {
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            color:rgb(229, 231, 111);
+            text-align: center;
+            font-size: 20px;
+        }
+    </style>
+    <div id="movieList"></div>
+</body>
+    
+</html>
