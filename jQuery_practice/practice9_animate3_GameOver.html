@@ -178,6 +178,7 @@
     let isGameOver = false;
     let isGoingRight = false;
     let isGoingLeft = false;
+    let isThrowing = false;
     let score = 0;
 
     function jump() {
@@ -255,8 +256,9 @@
     // Issue : 단 한 번만 작동하고, 그 후에는 작동하지 않음 (ㅠㅠ 왜?!)
     // Issue : 발사 후, 100점 추가 (==> 기능 구현이 안 됨)
     function shootsnowBallPororo() {
-      if (isGameOver == false ) {
+      if (isGameOver == false  && isThrowing == false) {
 
+        isThrowing = true;
         let startLocation = parseInt(pororo.css("left").replace("px",""));
         let endLocation = parseInt(kron.css("left").replace("px","")) + parseInt(snowBallPororo.css("width").replace("px",""));
         
@@ -265,6 +267,7 @@
 
           score += 100;
           $("#score").text(`SCORE : ${score}`);
+          isThrowing = false;
         });
      }
     }
