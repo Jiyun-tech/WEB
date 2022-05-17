@@ -88,12 +88,20 @@
       animation-timing-function: linear;
     }
 
+    #license {
+      position: absolute;
+      color: white;
+      font-size: 1rem;
+      left: 2%;
+      top: 1%;
+    }
+
     #score {
       position: absolute;
       color: white;
       font-size: 2rem;
       left: 2%;
-      top: 2%;
+      top: 4%;
     }
 
     @keyframes bg-slide {
@@ -150,6 +158,7 @@
     <img id="snowBallKron" src="..\Assets\SNOWBALL.png" alt="">
     <img id="snowBallPororo" src="..\Assets\SNOWBALL.png" alt="">
 
+    <div id="license">By Jiyun Seo</div>
     <div id="score">SCORE : 0</div>
     <div id="gameOverAlert">GAME OVER</div>
     <div id="gameStartNotice">Press Enter Key to Start Game</div>
@@ -231,31 +240,33 @@
 
     // Kron의 스노우볼 ==> 자동으로 발사됨
     function movesnowBallKron() {
-      snowBallKron.animate({ left: "0%" }, Math.random()*5000, function () {
-        snowBallKron.css({ left: "75%" });
+        snowBallKron.animate({ left: "0%" }, Math.random()*10000, function () {
+          snowBallKron.css({ left: "75%" });
 
-        if (isGameOver == false) {
-          setTimeout(movesnowBallKron(), 3500);
-          score += 100;
-          $("#score").text(`SCORE : ${score}`);
-        }
-      });
+          if (isGameOver == false) {
+            setTimeout(movesnowBallKron(), 3500);
+            score += 100;
+            $("#score").text(`SCORE : ${score}`);
+          }
+        });
     }
 
     // Pororo의 스노우볼 ==> keydown(ArrowDown)으로 발사
     // Issue : 단 한 번만 작동하고, 그 후에는 작동하지 않음 (ㅠㅠ 왜?!)
     // Issue : 발사 후, 100점 추가 (==> 기능 구현이 안 됨)
     function shootsnowBallPororo() {
+      if (isGameOver == false ) {
 
-      let startLocation = parseInt(pororo.css("left").replace("px",""));
-      let endLocation = parseInt(kron.css("left").replace("px","")) + parseInt(snowBallPororo.css("width").replace("px",""));
-      
-      snowBallPororo.css({ left: startLocation }).show().animate({left: endLocation}, 3000, function() { 
-        snowBallPororo.hide().css({left: startLocation });
+        let startLocation = parseInt(pororo.css("left").replace("px",""));
+        let endLocation = parseInt(kron.css("left").replace("px","")) + parseInt(snowBallPororo.css("width").replace("px",""));
+        
+        snowBallPororo.css({ left: startLocation }).show().animate({left: endLocation}, 3000, function() { 
+          snowBallPororo.hide().css({left: startLocation });
 
-        score += 100;
-        $("#score").text(`SCORE : ${score}`);
-      });
+          score += 100;
+          $("#score").text(`SCORE : ${score}`);
+        });
+     }
     }
 
 
