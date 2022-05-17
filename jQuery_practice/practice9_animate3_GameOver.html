@@ -250,13 +250,10 @@
       
       snowBallPororo.css({ left: startLocation }).show().animate({left: endLocation}, 3000, function() { 
         snowBallPororo.hide().css({left: startLocation });
-      });
 
-      if (isGameOver == false) {
-        setTimeout(shootsnowBallPororo(), 2000);
-          score += 100;
-          $("#score").text(`SCORE : ${score}`);
-      }
+        score += 100;
+        $("#score").text(`SCORE : ${score}`);
+      });
     }
 
 
