@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <!-- jQuery 사용 -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
@@ -131,11 +132,9 @@
         font-style: bold;
         color: white;
     }
-    .grayscale {
-        filter: grayscale(80%);
-    }
-
   </style>
+  
+  <!-- 제목 & 작동 방법 설명 -->
   <div id="title"> Snowball Fight with Pororo & Kron  </div>
   <div id="howTo"> 
     Hey Pororo! Let's have a snowball fight with me! <br><br>
@@ -181,6 +180,7 @@
     let isThrowing = false;
     let score = 0;
 
+    // 함수 : 뽀로로 점프 
     function jump() {
       if (isJumping || isGameOver) {
         return;
@@ -192,6 +192,8 @@
           isJumping = false;
         });
 
+      // 뽀로로 점프 시, 크롱 위로 점프하는 경우 (뽀로로 위치값 & 크롱 위치값 결정하여 판단)
+      // ==> 크롱 위로 점프 시, scroe +100 & 크롱 흑백 변화 & 크롱 크기 줄어듦 (0.5초 후 복원)
       if (isGameOver == false ) {
         if (parseInt(pororo.css('left').replace("px","")) 
             < parseInt($('#kron').css('left').replace("px",""))+parseInt($('#kron').css('width').replace("px",""))
@@ -211,6 +213,7 @@
       }
     }
 
+    // 함수 : 뽀로로 우측 이동 (→)
     function goRight() {
       if (isJumping || isGameOver || isGoingRight || isGoingLeft) {
         return;
@@ -227,6 +230,7 @@
       }
     };
 
+    // 함수 : 뽀로로 좌측 이동 (←)
     function goLeft() {
       if (isJumping || isGameOver || isGoingRight || isGoingLeft) {
         return;
@@ -243,7 +247,7 @@
       }
     }
 
-    // Kron의 스노우볼 ==> 자동으로 발사됨
+    // 함수 : Kron의 스노우볼 ==> 자동으로 발사됨
     function movesnowBallKron() {
         snowBallKron.animate({ left: "0%" }, Math.random()*9000, function () {
           snowBallKron.css({ left: "75%" });
@@ -256,9 +260,9 @@
         });
     }
 
-    // Pororo의 스노우볼 ==> keydown(ArrowDown)으로 발사
-    // Issue : 단 한 번만 작동하고, 그 후에는 작동하지 않음 (ㅠㅠ 왜?!)
-    // Issue : 발사 후, 100점 추가 (==> 기능 구현이 안 됨)
+    // 함수 : Pororo의 스노우볼 ==> keydown(ArrowDown)으로 발사
+    // 시작 위치 : 뽀로로 위치, 이동 종료 위치 : 크롱 위치 
+    // 발사 후, point + 100
     function shootsnowBallPororo() {
       if (isGameOver == false  && isThrowing == false) {
 
@@ -281,7 +285,7 @@
      }
     }
 
-
+    // 함수 : gameover 여부 판단 (뽀로로가 점프하지 않을 때, 크롱의 스노우볼과 만나면 게임오버)
     function pororoDead() {
       let snowBallKronLeft = parseInt(snowBallKron.css("left").replace("px", ""));
       let pororoLeft = parseInt(pororo.css("left").replace("px", ""));
@@ -295,6 +299,7 @@
       }
     }
 
+    // 함수 : 게임 오버 시, 구동되는 사항
     function gameOver() {
       isGameOver = true;
       snowBallKron.stop();
@@ -306,6 +311,7 @@
       $('#pororo').css('filter','grayscale(100%)');
     }
 
+    // 함수 : 게임 시작 시, 구동되는 사항
     function gameStart() {
       $("#gameOverAlert").hide();
       $("gameStartNotice").show();
@@ -322,6 +328,7 @@
       pororo.css({ left: "20%" });
     }
 
+    // 키보드 키로 조작하는 기능들 (점프, 우측 이동, 좌측 이동, 뽀로로 스노우볼 던지기)
     $("body").keydown(function (event) {
       switch (event.key) {
         case " ":
@@ -347,6 +354,7 @@
        }
     });
 
+    // 게임 진행
     function game() {
         $("#gameStartNotice").hide();
         setTimeout(movesnowBallKron, 1000);
@@ -362,6 +370,7 @@
         }, 1000 / 30);
         }
 
+    // onload (페이지 접속 시 구동 화면)
     $(function () {
         gameStart();
 
