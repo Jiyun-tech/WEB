@@ -265,9 +265,14 @@
         snowBallPororo.css({ left: startLocation }).show().animate({left: endLocation}, 3000, function() { 
           snowBallPororo.hide().css({left: startLocation });
 
+          kron.css('filter','grayscale(100%)'); // Kron - Gray
+
           score += 100;
           $("#score").text(`SCORE : ${score}`);
+
           isThrowing = false;
+
+          setTimeout(function() {kron.css('filter','grayscale(0%)')}, 500); // Kron - Color
         });
      }
     }
