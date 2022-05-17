@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX test1</title>
+</head>
+
+<body>
+    <script>
+        function loadDoc() {
+            // XMLHttpRequest Object 생성
+            let xhttp = new XMLHttpRequest();
+
+            // 응답 왔을 때의 콜백 함수 정의
+            // JavaScript에서는 함수도 값으로 취급되기 때문에 변수에 대입 가능
+            xhttp.onreadystatechange = function() {
+
+                // this == xhttp
+                // this.readyState == 4 : 정상 완료 (done) 
+                // request에 대해 server로부터 response가 오면 -> 정상 완료! (오류라는 응답이어도 정상완료인 것)
+                // ==> reference : https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState
+                // this.status == 200 : OK  (server의 입장에서 정상 동작이라는 응답)
+                // cf. this.status == 404 : ERROR(Not Found) (server 입장에서 오류 동작이라는 응답)
+                // ==> reference : https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/status
+                // ==> reference : https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("demo").innerHTML = this.responseText;
+                }
+            };
+            
+            // 통신 방식 & 대상 설정
+            // 통신 방식 종류 : GET(읽기), POST(쓰기), UPDATE, DELET, ...
+            // 참고) 다른 domain에 요청하면 기본적으로 막힘
+            xhttp.open("GET","ajax_info.txt", true);
+
+            // 실행
+            xhttp.send();
+        }
+    </script>
+
+    <div id="demo"></div>
+    <button onclick="loadDoc()">get data</button>
+    
+</body>
+</html>
