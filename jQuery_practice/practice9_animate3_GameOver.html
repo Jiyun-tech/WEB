@@ -203,7 +203,11 @@
             score += 100;
             $("#score").text(`SCORE : ${score}`);
 
-            }
+            //Kron color change
+            kron.css('filter','grayscale(100%)'); // Kron - Gray
+            setTimeout(function() {kron.css('filter','grayscale(0%)')}, 500); // Kron - Color
+
+          }
       }
     }
 
