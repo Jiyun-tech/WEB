@@ -203,10 +203,10 @@
             score += 100;
             $("#score").text(`SCORE : ${score}`);
 
-            //Kron color change
-            kron.css('filter','grayscale(100%)'); // Kron - Gray
-            setTimeout(function() {kron.css('filter','grayscale(0%)')}, 500); // Kron - Color
-
+            // Kron Change - gray & small
+            kron.css('height',"50px").css('filter','grayscale(100%)');
+            // Kron Change - to original
+            setTimeout(function() {kron.css('filter','grayscale(0%)'), kron.css('height',"150px")}, 500);
           }
       }
     }
