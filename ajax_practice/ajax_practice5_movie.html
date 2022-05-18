@@ -41,12 +41,17 @@
         };
     </script>
     <style>
+        #movieList { 
+            /* 페이지에 따른 자동 정렬 (flex & wrap) */
+            display: flex;
+            flex-wrap: wrap;
+        }
         #oneMovie{
             display: inline-block;
             box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
             transition: 0.3s;
-            width: 28%;
-            height: 50%;
+            /* width: 28%;
+            height: 50%; */
             border-radius: 10px;
             text-align: center;
             padding: 1%;
@@ -54,8 +59,8 @@
             background-color: rgb(75, 97, 90);
         }
         #poster {
-            width: 80%;
-            height: 80%;
+            /* width: 80%;
+            height: 80%; */
             border-radius: 10px;
         }
         #title {
