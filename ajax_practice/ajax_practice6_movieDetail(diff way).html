@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX5 - 영화 정보 상세</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <script>
+        $(function() {
+                    // javascript get parameter ==> 검색하여 방법찾기
+                    const queryString = window.location.search;
+                    const parameters = new URLSearchParams(queryString);
+                    const id = parameters.get('id');
+
+                    // 받은 request에 따른 응답 찾을 data
+                    // ***** 영화 정보 json data 링크로 접속하기 (!!!!API 참고!!!!) ==> movie ID에 따른 정보 확인하는 방법 *****
+                    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=a64533e7ece6c72731da47c9c8bc691f&language=ko-KR&page=1`)
+                        .then(response => response.json())
+                        .then(movie => {
+                            let imgLoadURL = "https://image.tmdb.org/t/p/w500"; // img 파일 로드 위한 주소
+                             // title = 제목, poster_path = 포스터 url
+                             // release_date = 개봉일, vote_count = 투표 수
+                             // vote_average = 평점, overview = 줄거리
+                             // #movieList에 results 데이터 중 필요한 정보 추가하기 (table 형식)
+                             $('#movieDetail').append(` <table id="oneMovie">
+                                                            <tr>
+                                                                <td id="title" colspan="2">${movie.title}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td id="poster"> <img id="poster_img" src="${imgLoadURL + movie.poster_path}" alt=""> </td>
+                                                                <td id="dateAndVote"> 
+                                                                    <div id="releasedData">개봉일 : ${movie.release_date} </div> <br>
+                                                                     <div id="voteCount"> 🎯 ${movie.vote_count}</div> 
+                                                                     <div id="voteAverage"> ♥ ${movie.vote_average} </div>
+                                                                </td>
+                                                            </tr>
+    
+                                                            <tr>
+                                                                <td id="overview" colspan="2">${movie.overview}</td>
+                                                            </tr>
+                                                        </table>`);
+
+                        });
+
+                })
+    </script>
+    * Detailed Information *
+    <br><br>
+    <div id="movieDetail"></div>
+
+    <style>
+        #oneMovie {
+            width: 60%;
+            padding: 2%;
+            border: 5px rgb(35, 129, 202) dashed;
+            box-shadow: 0 4px 8px 0 rgb(16, 64, 101);
+            border-radius: 5%;
+            background-color: rgb(201, 247, 247);
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        #title {
+            padding-bottom: 2%;
+            text-align: center;
+            font-size: 50px;
+            color: rgb(88, 88, 222);
+            border-bottom: 2px rgb(35, 129, 202) solid;
+        }
+
+        #poster {
+            padding: 2%;
+            width:60%;
+        }
+
+        #poster_img {
+            width: 100%;
+        }
+
+        #dateAndVote {
+            display: inline;
+        }
+
+        #releasedData {
+            position: relative;
+            top: 0;
+            font-size: 20pt;
+        }
+        #voteCount {
+            display: inline-block;
+            padding: 2%;
+            width: 40%;
+            position: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5%;
+            background-color: rgb(88, 88, 222);
+            box-shadow: 0 4px 8px 0 rgb(34, 34, 85);
+            text-align: center;
+            color: white;
+            font-size: 20pt;
+        }
+        #voteAverage {
+            display: inline-block;
+            padding: 2%;
+            width: 40%;
+            position: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5%;
+            background-color: rgb(88, 88, 222);
+            box-shadow: 0 4px 8px 0 rgb(34, 34, 85);
+            text-align: center;
+            color: white;
+            font-size: 20pt;
+        }
+
+        #overview {
+            border-top: 2px rgb(35, 129, 202) solid;
+            padding-top: 2%;            
+            font-size: 15pt;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+    </style>
+
+</body>
+</html>
