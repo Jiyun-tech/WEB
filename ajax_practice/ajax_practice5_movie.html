@@ -22,14 +22,15 @@
 
         // 영화 정보 페이지 로드
         function loadMovieInfo() {
-            // 영화 정보 jason data 링크로 접속하기
+            // 영화 정보 json data 링크로 접속하기
             fetch('https://api.themoviedb.org/3/movie/upcoming?api_key=a64533e7ece6c72731da47c9c8bc691f&language=ko-KR&page=1') 
                 // json 데이터 받아오기
                 .then(response => response.json())
                 .then(jsonArray => {
                     // 받은 json database에서, "results" 항목 전체 데이터 확인 (array 0 ~ last)
-                    jsonArray.results.forEach((movieData,index) => {
-                        // #movieList에 results 데이터 중, id, poster_path 값 받아 붙이기
+                    let movies = jsonArray.results;
+                    movies.forEach((movieData,index) => {
+                        // #movieList에 movies(jsonArray.results) 데이터 중, id, poster_path 값 받아 붙이기
                         $('#movieList').append(`<div id="oneMovie" onclick="showDetails(${movieData.id})">
                                                     <img id="poster" src="https://image.tmdb.org/t/p/w500${movieData.poster_path}" alt="Image Load is failed">
                                                     <div id="title">${movieData.title}</div>
