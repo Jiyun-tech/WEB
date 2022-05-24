@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX5 - 영화 정보</title>
+    <!-- jQuery 사용 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Vue.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- lodash Library CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+</head>
+
+<body>
+    <div id="items">
+        <!-- 검색 기능 만들기 (검색어가 포함된 title만 filtering) -->
+        <input v-model="query" placeholder="검색어">
+        <div id="movieItems">
+            <!-- for문 돌려서 json data의 .poster_path & .title 값 받아오기 -->
+            <div id="oneMovie" v-for="item in filteredMovies" v-on:click="moveDetailPage(item.id)">
+                <img :src="item.poster_path" alt="Avatar" style="width:100%">
+                <h4><b>{{item.title}}</b></h4>
+                <p>{{item.overview}}</p>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        let app = new Vue({
+            el: '#items',
+            data: {
+                query: '',
+                moviesArray: [],    // 전체 데이터
+                filteredMovies: []  // 검색 데이터
+            },
+            created: function () {
+                this.getMovieInfo();
+            },
+            methods: {
+                getMovieInfo: function () {
+                    let vm = this; // 전체 component를 받는 변수
+                    fetch('https://api.themoviedb.org/3/movie/upcoming?api_key=a64533e7ece6c72731da47c9c8bc691f&language=ko-KR&page=1')
+                        // json 데이터 받아오기
+                        .then(response => response.json())
+                        .then(function (movies) {
+                            vm.moviesArray = movies.results.map(function (movie) {
+                                movie['poster_path'] = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+                                return movie;
+                            });
+                            vm.filteredMovies = vm.moviesArray;
+                        })
+                        // 에러 메시지
+                        .catch(function (error) {
+                            vm.message = '에러!! API 요청에 오류가 있습니다';
+                        });
+                },
+                moveDetailPage: function (movieId) {
+                    window.location.href = `../ajax_practice/ajax_practice5_movieDetail.html?id=${movieId}`
+                }
+            },
+            watch: {
+                query: function (val) {
+                    this.filteredMovies = this.moviesArray.filter(moviesArray => moviesArray.title.toLowerCase().includes(val.toLowerCase()));
+                }
+            }
+        });
+    </script>
+
+    <style>
+        #movieItems {
+            /* 페이지에 따른 자동 정렬 (flex & wrap) */
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #oneMovie {
+            display: inline-block;
+            box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.5);
+            transition: 0.3s;
+            /* width: 28%;
+            height: 50%; */
+            border-radius: 10px;
+            text-align: center;
+            padding: 1%;
+            margin: 1%;
+            background-color: rgb(75, 97, 90);
+        }
+
+        #poster {
+            /* width: 80%;
+            height: 80%; */
+            border-radius: 10px;
+        }
+
+        #title {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            color: rgb(229, 231, 111);
+            text-align: center;
+            font-size: 20px;
+        }
+    </style>
+
+</body>
+
+</html>
