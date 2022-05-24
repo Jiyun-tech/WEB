@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +11,7 @@
     <!-- lodash Library CDN -->
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 </head>
+
 <body>
     <div id="app">
         <!-- 검색 기능 만들기 (검색어가 포함된 title만 filtering) -->
@@ -21,7 +23,7 @@
             </li>
         </ul>
     </div>
-    
+
     <script>
         let app = new Vue({
             el: '#app',
@@ -30,34 +32,34 @@
                 posts: [],          // 전체 데이터
                 filteredPosts: []   // 검색 조건에 맞는 데이터만 필터링
             },
-            created: function() {
+            created: function () {
                 // 통신 (jsonplaceholder.typicode.com 웹사이트 db 이용)
                 this.getPosts();
 
                 // 디바운스 적용된 검색 함수 정의
-                this.debouncedSearch = _.devounce(this.search, 500);
-            }, 
+                this.debouncedSearch = _.debounce(this.search, 500);
+            },
             methods: {
-                getPosts: function() {
+                getPosts: function () {
                     let v = this; // 전체 component를 받는 변수
                     fetch('https://jsonplaceholder.typicode.com/posts')
-                    // json 자료 받기
-                    .then(response => response.json()) 
-                    .then(function(json) {
-                        v.posts = json;
-                        v.filteredPosts = json;
-                    })
+                        // json 자료 받기
+                        .then(response => response.json())
+                        .then(function (json) {
+                            v.posts = json;
+                            v.filteredPosts = json;
+                        })
                 },
-                
+
                 // search 함수 생성
-                search: function(val) {
-                    this.filteredPosts = this.posts.filter(post => post.title.includes(val))
+                search: function (val) {
+                    this.filteredPosts = this.posts.filter(post => post.title.includes(val));
                 }
             },
 
             // query(검색창)에 변경 내용 발생 시, filter 기능 작동
             watch: {
-                query: function(val) {
+                query: function (val) {
                     this.debouncedSearch(val);
                 }
             }
@@ -66,4 +68,5 @@
     </script>
 
 </body>
+
 </html>
