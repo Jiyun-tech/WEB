@@ -7,6 +7,8 @@
     <title>목록 출력</title>
     <!-- Vue.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- lodash Library CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 </head>
 <body>
     <div id="app">
@@ -31,6 +33,9 @@
             created: function() {
                 // 통신 (jsonplaceholder.typicode.com 웹사이트 db 이용)
                 this.getPosts();
+
+                // 디바운스 적용된 검색 함수 정의
+                this.debouncedSearch = _.devounce(this.search, 500);
             }, 
             methods: {
                 getPosts: function() {
@@ -42,13 +47,18 @@
                         v.posts = json;
                         v.filteredPosts = json;
                     })
+                },
+                
+                // search 함수 생성
+                search: function(val) {
+                    this.filteredPosts = this.posts.filter(post => post.title.includes(val))
                 }
             },
 
             // query(검색창)에 변경 내용 발생 시, filter 기능 작동
             watch: {
                 query: function(val) {
-                    this.filteredPosts = this.posts.filter(post => post.title.includes(val))
+                    this.debouncedSearch(val);
                 }
             }
         })
